@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "YT Music Personal Extension",
+  "version": "1.0",
+  "description": "My Personal Youtube Customizations",
+  "content_scripts": [
+    {
+      "matches": [
+        "https://music.youtube.com/*"
+      ],
+      "js": ["index.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
