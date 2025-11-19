@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "YT Music Personal Extension",
-  "version": "1.0",
+  "version": "1.1",
   "description": "My Personal Youtube Customizations",
   "content_scripts": [
     {
@@ -11,5 +11,9 @@
       "js": ["index.js"],
       "run_at": "document_idle"
     }
-  ]
+  ],
+  "action" : {
+    "default_title": "this is a test",
+    "default_popup": "index.html"
+  }
 }

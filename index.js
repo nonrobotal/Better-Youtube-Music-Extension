@@ -1,4 +1,5 @@
 
+// Hotkeys
 document.addEventListener("keydown", e => {
     const input = e.code
     // toggle the player page when the i key is pressed
@@ -11,14 +12,15 @@ document.addEventListener("keydown", e => {
         myButton.click()
         return;
     }
-
     // move forward and backward with the arrow keys and period & comma keys\
-    
+
     if (input === "ArrowLeft") {
+        e.preventDefault()
         jump(-5)
         return;
     }
     if (input === "ArrowRight") {
+        e.preventDefault()
         jump(+5)
         return;
     }
@@ -30,19 +32,47 @@ document.addEventListener("keydown", e => {
         jump(+1)
         return;
     }
-
+    if (input === "Equal") {
+        const myButton = document.querySelector("button[aria=label='Mute']")
+        myButton.focus()
+        return
+    }
+    if (input === "Minus") {
+        const myButton = document.querySelector("button[aria=label='Mute']")
+        myButton.focus()
+        return
+    }
     // 숫자 이용해서 점프
-    if(/^Digit/.test(input)){
+    if (/^Digit/.test(input)) {
         const number = numberfyEventCode(input)
-        goTo(number/10)
+        goTo(number / 10)
 
+        return;
+    }
+
+    if (e.metaKey && e.shiftKey && e.code === "KeyP") {
+        console.log("단축키 감지됨!");
         return;
     }
 
     return;
 })
 
+document.addEventListener("click", e => {
+    const active = document.activeElement 
+    if (!active) {return}
 
+    const tag = active.tagName.toLowerCase()
+    const isTypingField = (tag === "input")
+
+    if (isTypingField) {
+        return
+    }
+
+    setTimeout(() => {
+        active.blur()
+    },0)
+})
 
 function goTo(playRate) {
     const video = document.querySelector("video.html5-main-video")
@@ -53,10 +83,11 @@ function goTo(playRate) {
 }
 
 function numberfyEventCode(str) {
-    return Number(str.replace(/^Digit/,''))
+    return Number(str.replace(/^Digit/, ''))
 }
 
 function jump(seconds) {
     const video = document.querySelector("video.html5-main-video")
     video.currentTime += seconds
 }
+
