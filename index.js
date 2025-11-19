@@ -33,13 +33,19 @@ document.addEventListener("keydown", e => {
         return;
     }
     if (input === "Equal") {
-        const myButton = document.querySelector("button[aria=label='Mute']")
-        myButton.focus()
+        const mySlider = document.querySelector("tp-yt-paper-slider#volume-slider")
+        mySlider.classList.add("on-hover")
+        setTimeout(() => {
+            mySlider.classList.remove("on-hover")
+        },3000)
         return
     }
     if (input === "Minus") {
-        const myButton = document.querySelector("button[aria=label='Mute']")
-        myButton.focus()
+        const mySlider = document.querySelector("tp-yt-paper-slider#volume-slider")
+        mySlider.classList.add("on-hover")
+        setTimeout(() => {
+            mySlider.classList.remove("on-hover")
+        },3000)
         return
     }
     // 숫자 이용해서 점프
